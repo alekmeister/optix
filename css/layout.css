@@ -1,0 +1,450 @@
+/* ════════════════════════════════════════════════════════════
+   LAYOUT — Desktop first (>1024px), then tablet, then mobile
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Top bar ────────────────────────────────────────────── */
+.topbar {
+  height: var(--topbar-h);
+  border-bottom: var(--border);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+/* ── Main layout ────────────────────────────────────────── */
+.layout {
+  display: flex;
+  height: calc(100vh - var(--topbar-h) - var(--bottombar-h));
+  overflow: hidden;
+}
+
+/* ── OPTIX rows ─────────────────────────────────────────── */
+.rows {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.row {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  overflow: hidden;
+}
+
+.row:not(:last-child) {
+  border-bottom: var(--border);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(80px, 17vw, 240px);
+  letter-spacing: -0.06em;
+  line-height: 0.86;
+  user-select: none;
+}
+
+.wordmark.outline {
+  color: transparent;
+  -webkit-text-stroke: 3px var(--black);
+}
+
+.row-num {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+
+/* ── Right stub ─────────────────────────────────────────── */
+.stub {
+  width: 340px;
+  flex-shrink: 0;
+  border-left: var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.stub-tag {
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+/* stub-body: single column on desktop */
+.stub-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.stub-left,
+.stub-right {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Signal section ─────────────────────────────────────── */
+.signal-section {
+  border-top: 2px solid var(--black);
+  padding: 12px 24px;
+}
+
+.signal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.eq-svg {
+  display: block;
+}
+
+/* ── Mix section ────────────────────────────────────────── */
+.mix-section {
+  border-top: 2px solid var(--black);
+  padding: 12px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mix-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 2px 0;
+}
+
+.play-btn {
+  display: inline-block;
+  border: 2px solid var(--black);
+  padding: 6px 10px;
+  margin-top: 6px;
+  align-self: flex-start;
+}
+
+.play-btn:hover {
+  background: var(--black);
+  color: var(--yellow);
+}
+
+/* ── Tour section ───────────────────────────────────────── */
+.tour-section {
+  border-top: 2px solid var(--black);
+  padding: 12px 24px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.gigs-list {
+  margin-top: 2px;
+}
+
+.gig {
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  gap: 8px;
+  padding: 5px 0;
+  align-items: baseline;
+}
+
+.gig + .gig {
+  border-top: 1px dashed rgba(0, 0, 0, 0.25);
+}
+
+.gig-num {
+  font-size: 9px;
+}
+
+.gig-venue {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.gig-date {
+  font-size: 10px;
+}
+
+/* ── Channels section ───────────────────────────────────── */
+.channels-section {
+  border-top: 2px solid var(--black);
+  padding: 12px 24px;
+  margin-top: auto;
+}
+
+.channels-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+  margin-top: 6px;
+}
+
+.channel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chan-name {
+  font-size: 9px;
+}
+
+.chan-handle {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ── Bottom bar ─────────────────────────────────────────── */
+.bottombar {
+  height: var(--bottombar-h);
+  border-top: var(--border);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.bottombar a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile booking strip — hidden on desktop */
+.mobile-booking {
+  display: none;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   TABLET  481px – 1024px
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+
+  /* Stack rows above stub */
+  .layout {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+
+  .topbar-center {
+    display: none;
+  }
+
+  /* Fixed-height rows */
+  .row {
+    flex: none;
+    height: 200px;
+  }
+
+  .wordmark {
+    font-size: clamp(100px, 26vw, 240px);
+  }
+
+  /* Stub becomes full-width below the rows */
+  .stub {
+    width: 100%;
+    border-left: none;
+    border-top: var(--border);
+    overflow-y: visible;
+  }
+
+  /* Tag: horizontal strip */
+  .stub-tag {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--border);
+    padding: 12px 32px;
+  }
+
+  /* stub-body: two columns */
+  .stub-body {
+    flex-direction: row;
+    align-items: stretch;
+    border-bottom: var(--border);
+    flex: none;
+  }
+
+  .stub-left {
+    flex: 1;
+    border-right: var(--border);
+    padding: 0;
+  }
+
+  .stub-right {
+    flex: 1;
+    padding: 0;
+  }
+
+  .signal-section {
+    padding: 14px 24px;
+  }
+
+  .mix-section {
+    padding: 14px 24px;
+  }
+
+  .tour-section {
+    border-top: none;
+    padding: 14px 24px;
+  }
+
+  /* Channels: 4 columns */
+  .channels-section {
+    border-top: var(--border);
+    padding: 14px 32px;
+    margin-top: 0;
+  }
+
+  .channels-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px 12px;
+  }
+
+  .chan-handle {
+    font-size: 15px;
+  }
+
+  /* Bottom bar stays, but simpler */
+  .bottombar {
+    padding: 0 32px;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE  ≤ 480px
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+
+  :root {
+    --topbar-h: 44px;
+    --bottombar-h: 44px;
+  }
+
+  .topbar {
+    padding: 0 16px;
+  }
+
+  .topbar-center {
+    display: none;
+  }
+
+  /* Compact wordmark rows */
+  .row {
+    height: 96px;
+    padding: 0 16px;
+  }
+
+  .wordmark {
+    font-size: 96px;
+  }
+
+  .wordmark.outline {
+    -webkit-text-stroke: 2px var(--black);
+  }
+
+  /* Stub collapses to single column */
+  .stub-body {
+    flex-direction: column;
+    border-bottom: none;
+  }
+
+  .stub-left {
+    border-right: none;
+  }
+
+  .stub-tag {
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 16px;
+  }
+
+  .signal-section {
+    padding: 12px 16px;
+  }
+
+  .mix-section {
+    padding: 12px 16px;
+  }
+
+  .mix-title {
+    font-size: 22px;
+  }
+
+  /* Play button full-width on mobile */
+  .play-btn {
+    align-self: stretch;
+    text-align: center;
+    background: var(--black);
+    color: var(--yellow);
+    border-color: var(--black);
+    padding: 10px 12px;
+    margin-top: 8px;
+  }
+
+  .tour-section {
+    padding: 12px 16px;
+  }
+
+  .gig {
+    grid-template-columns: 1fr auto;
+  }
+
+  .gig-num {
+    display: none;
+  }
+
+  .channels-section {
+    padding: 12px 16px;
+    margin-top: 0;
+  }
+
+  .channels-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .chan-handle {
+    font-size: 13px;
+  }
+
+  /* Hide desktop bottombar, show mobile strip */
+  .bottombar {
+    display: none;
+  }
+
+  .mobile-booking {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--black);
+    color: var(--yellow);
+    padding: 14px 16px;
+  }
+
+  .mobile-booking .mono {
+    color: var(--yellow);
+  }
+
+  .mobile-booking a {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--yellow);
+    letter-spacing: 0.04em;
+  }
+}
